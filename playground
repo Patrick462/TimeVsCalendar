@@ -1,0 +1,36 @@
+// Examples for "Time vs Calendar: One is Easy and the Other Hard
+// Presentation to iPhone Developer Group, November 2, 2021
+import Cocoa
+
+// Example 1
+// Show elapsed time between two clicks
+let timeStart = Date().timeIntervalSinceReferenceDate
+print(timeStart)
+
+let timeEnd = Date().timeIntervalSinceReferenceDate
+print(timeEnd)
+
+print(timeEnd - timeStart)
+
+// Example 2
+// Show appointment day, month, year
+let exampleCalendar = Calendar(identifier: .gregorian)
+
+var exampleDateComponents = DateComponents()
+exampleDateComponents.year = 2021
+exampleDateComponents.month = 11
+exampleDateComponents.day = 2
+exampleDateComponents.timeZone = TimeZone(abbreviation: "CST")
+exampleDateComponents.hour = 22
+exampleDateComponents.minute = 34
+
+let appointmentDate = exampleCalendar.date(from: exampleDateComponents) ?? Date()
+print(appointmentDate)
+
+// Example 3
+// Show hours from now until appointment
+let timeCurrent = Date().timeIntervalSinceReferenceDate
+let appointmentDateAsTime = appointmentDate.timeIntervalSinceReferenceDate
+
+print((appointmentDateAsTime - timeCurrent) / (60 * 60))
+
